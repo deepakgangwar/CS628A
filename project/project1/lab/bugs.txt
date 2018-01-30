@@ -15,3 +15,52 @@ another description.
     <paste offending line(s) of code here>
 
 # many more come here
+[http.c:92]
+sprintf does not check sanitization of input. Length of buf is 4096 so if length of envp is less then it may corrupt the other data.
+
+HTTP Request:
+GET / HTTP/1.0
+<number of characters according to location of buffers> * 'A'
+
+	envp += sprintf(envp, "REQUEST_METHOD=%s", buf) + 1;
+
+[http.c:93]
+similar to last one
+
+	envp += sprintf(envp, "SERVER_PROTOCOL=%s", sp2) + 1;
+
+[http.c:163]
+sprintf does not check sanitization of input. 
+Length of buf can go to 4096 but length of envvar is only 1024.
+
+HTTP Request:
+GET / HTTP/1.0
+<number of characters according to location of buffers> * 'A'
+
+	sprintf(envvar, "HTTP_%s", buf);
+
+[http.c:280]
+strcat is also a vulnreble function. 
+pn is 1024 bytes while name can go beyond the limit while called from zookfs
+
+HTTP Request:
+"GET" /<number of characters according to location of buffers>*'A' HTTP/1.0
+
+	strcat(pn, name);
+
+[http.c:156]
+url decode does not do check any input.
+value buffer can be oveflowed.
+because there is no length check in the url_decode(http.c:462) last else condition to break the loop.
+
+HTTP Request:
+GET / HTTP/1.0
+"Host: localhost"+"A"*<number of characters according to location of buffers> times 
+	
+	url_decode(value, sp);
+
+
+Canaries are used to check whether return address is corrupted or not. 
+Canaries do not provide any security for other stack variable corruption.
+Even in the case of return address corruption Canaries are not full proof, it only increases difficulty in doing so.
+So Canaries will not help in preventing these vulnreblity.
