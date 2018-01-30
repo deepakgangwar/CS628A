@@ -33,3 +33,5 @@
 
 #custom
 *.iso
+*.ova
+*.tar.gz
