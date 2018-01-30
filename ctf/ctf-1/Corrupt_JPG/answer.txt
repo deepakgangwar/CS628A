@@ -1,0 +1,3 @@
+1. Downlaod the image and try to open it with image viewer which gives the error Not a JPEG : starts with 0x89 0x50
+2. Considering the previous error open it in hex editor. JPEG starts with "FF D8 FF E1" and ends with "FFD9" which is not the given image.
+3. Edit the header according to jpeg header and save it. Now the image can be viewed in image viewer in which the flag is written.

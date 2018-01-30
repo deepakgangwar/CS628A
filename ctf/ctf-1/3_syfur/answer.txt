@@ -1,0 +1,5 @@
+1. Main calls the function "get_flag" which scans a input from gets and then prints something then returns to main but there is a function "not_flag" which is not called form anywhere and which prints the flag after reading it from file.
+2. We want to execute "not_flag" by changing the return address i.e. ($ebp+0x04)to start of not_flag i.e. 0x0804856f
+3. input is allocated at ($ebp-0x69). 69 in hex translates to 105 in dec so execute following 2 commands to get the key.
+4. python -c 'print "A"*109+"\x6f\x85\x04\x08"' > test
+5. ./3_syfur < test

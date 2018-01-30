@@ -1,0 +1,3 @@
+1. Open the flag file which includes "-" and "." which looks like morse code.
+2. Convert this morse code to binary and then to text from ASCII table.
+3. The text looks like the flag but there is a "t" after each letter so delete "t" and the result is flag.

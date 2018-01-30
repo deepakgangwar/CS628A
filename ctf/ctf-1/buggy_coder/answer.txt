@@ -1,0 +1,5 @@
+1. objdump shows a function "fun" which reads the flag from file and prints it so we need to execute it.
+2. location of the scanned variable is ($ebp - 0xd0) and if ($ebp - 0xc) is not zero then it executes "fun" function. d0 = 208 in decimal.
+3. So we need to write some non zero value at location ($ebp - 0xc) so execute following 2 commands which will print the flag.
+4. python -c 'print "A"*208' > test
+5. ./buggy < test

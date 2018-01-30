@@ -1,0 +1,3 @@
+1. function getFlag will execute if input*10 == 4
+2. This can be possible via integer overflow so we have to input a number which can overflow the 32 bit int after multiplication by 10 and after overflow number is 4.
+3. such number is 4,294,967,30 so give this as input and flag will be printed.
