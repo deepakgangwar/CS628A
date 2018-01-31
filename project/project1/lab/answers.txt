@@ -1,3 +1,7 @@
 ## Place your answers here.
 expoit-2a.py expoits bug at [http.c:280]
 expoit-2b.py expoits bug at [http.c:163]
+expoit-3.py expoits bug at [http.c:92] & [http.c:92]
+
+Some bugs can not be exploited for exercise 3 because the function never returns so there is no benefit in overflowing ebp+4.
+e.g. bug at [http.c:163]
