@@ -18,6 +18,7 @@ another description.
 [http.c:92]
 sprintf does not check sanitization of input. 
 Length of buf is 4096 so if length of envp is less then it may corrupt the other data.
+And it can overflow the reqpath in zookd.c
 
 HTTP Request:
 GET / HTTP/1.0
