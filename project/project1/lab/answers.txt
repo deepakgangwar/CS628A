@@ -1,1 +1,3 @@
 ## Place your answers here.
+expoit-2a.py expoits bug at [http.c:280]
+expoit-2b.py expoits bug at [http.c:163]

@@ -32,16 +32,18 @@ similar to last one
 [http.c:163]
 sprintf does not check sanitization of input. 
 Length of buf can go to 4096 but length of envvar is only 1024.
+exploit is present in expoit-2b.py
 
 HTTP Request:
 GET / HTTP/1.0
-<number of characters according to location of buffers> * 'A'
+<number of characters according to location of buffers> * 'A' + ': a'
 
 	sprintf(envvar, "HTTP_%s", buf);
 
 [http.c:280]
 strcat is also a vulnreble function. 
 pn is 1024 bytes while name can go beyond the limit while called from zookfs
+exploit is present in expoit-2a.py
 
 HTTP Request:
 "GET" /<number of characters according to location of buffers>*'A' HTTP/1.0
@@ -55,7 +57,7 @@ because there is no length check in the url_decode(http.c:462) last else conditi
 
 HTTP Request:
 GET / HTTP/1.0
-"Host: localhost"+"A"*<number of characters according to location of buffers> times 
+"Host: localhost"+"A" * <number of characters according to location of buffers> times 
 	
 	url_decode(value, sp);
 
