@@ -16,7 +16,8 @@ another description.
 
 # many more come here
 [http.c:92]
-sprintf does not check sanitization of input. Length of buf is 4096 so if length of envp is less then it may corrupt the other data.
+sprintf does not check sanitization of input. 
+Length of buf is 4096 so if length of envp is less then it may corrupt the other data.
 
 HTTP Request:
 GET / HTTP/1.0
@@ -66,3 +67,9 @@ Canaries are used to check whether return address is corrupted or not.
 Canaries do not provide any security for other stack variable corruption.
 Even in the case of return address corruption Canaries are not full proof, it only increases difficulty in doing so.
 So Canaries will not help in preventing these vulnreblity.
+
+[http.c:310]
+sprintf does not check sanitization of input. 
+by making environment variable PATH_INFO and pn bigger we can overflow buf
+
+	sprintf(buf, "%s%s", pn, getenv("PATH_INFO"));
