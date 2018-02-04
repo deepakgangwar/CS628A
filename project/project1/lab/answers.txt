@@ -29,3 +29,7 @@ this can be prevented by not allowing ".." characters in the file request
 
 Exercise 6
 fixed webserver code is present in http_fixed.c
+
+sprintf vulnreblity are fixed with check on size or snprintf
+similarly strcat vulnreblity are fixed
+vulnreblity present in url_decode is fixed with checking the destination size

@@ -160,7 +160,10 @@ const char *http_request_headers(int fd)
 
         if (strcmp(buf, "CONTENT_TYPE") != 0 &&
             strcmp(buf, "CONTENT_LENGTH") != 0) {
-            sprintf(envvar, "HTTP_%s", buf);
+
+            size_t safe_length = (sizeof(envvar) / sizeof(envvar[0]) - strlen(envvar) - 5);
+            if( strlen(buf) < safe_length ) 
+                sprintf(envvar, "HTTP_%s", buf);
             setenv(envvar, value, 1);
         } else {
             setenv(buf, value, 1);
@@ -277,7 +280,9 @@ void http_serve(int fd, const char *name)
     getcwd(pn, sizeof(pn));
     setenv("DOCUMENT_ROOT", pn, 1);
 
-    strcat(pn, name);
+    size_t safe_length = (sizeof(pn) / sizeof(pn[0]) - strlen(pn));
+    if( strlen(name) < safe_length ) 
+        strcat(pn, name);
     split_path(pn);
 
     if (!stat(pn, &st))
@@ -307,7 +312,9 @@ void http_serve_file(int fd, const char *pn)
     if (getenv("PATH_INFO")) {
         /* only attempt PATH_INFO on dynamic resources */
         char buf[1024];
-        sprintf(buf, "%s%s", pn, getenv("PATH_INFO"));
+        
+        // sprintf(buf, "%s%s", pn, getenv("PATH_INFO"));
+        snprintf(buf,1024,"%s%s",pn,getenv("PATH_INFO"));
         http_serve_none(fd, buf);
         return;
     }
@@ -442,6 +449,10 @@ void http_serve_executable(int fd, const char *pn)
 
 void url_decode(char *dst, const char *src)
 {
+    if (sizeof(dst) < 4*strlen(src) + 4) {
+        *dst = '\0';
+        return;
+    }
     for (;;)
     {
         if (src[0] == '%' && src[1] && src[2])
