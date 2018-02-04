@@ -5,3 +5,27 @@ expoit-3.py expoits bug at [http.c:92] & [http.c:92]
 
 Some bugs can not be exploited for exercise 3 because the function never returns so there is no benefit in overflowing ebp+4.
 e.g. bug at [http.c:163]
+
+-----------------------------------------------------------------------------------------------------------------------------
+PART3
+
+exploit-4a extends the expoit-3 attack
+exploit-4b extends the exploit-2a attack
+
+Some bugs can not be exploited for exercise 4 because the function never returns.
+e.g. bug at [http.c:163]
+
+-----------------------------------------------------------------------------------------------------------------------------
+PART4
+
+Denial of Service
+make huge number of request so that RAM of server may get full after that fork will give error
+this can be prevented by making fd non blocking
+
+Read Any File
+you can read any file if httpd has permission to read it by sending relative address.
+e.g. req = "GET /../../../etc/passwd HTTP1.01\r\n"+"\r\n"
+this can be prevented by not allowing ".." characters in the file request
+
+Exercise 6
+fixed webserver code is present in http_fixed.c
