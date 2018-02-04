@@ -16,9 +16,7 @@ another description.
 
 # many more come here
 [http.c:92]
-sprintf does not check sanitization of input. 
-Length of buf is 4096 so if length of envp is less then it may corrupt the other data.
-And it can overflow the reqpath in zookd.c
+sprintf does not check sanitization of input. Length of buf is 4096 so if length of envp is less then it may corrupt the other data.
 
 HTTP Request:
 GET / HTTP/1.0
@@ -34,18 +32,16 @@ similar to last one
 [http.c:163]
 sprintf does not check sanitization of input. 
 Length of buf can go to 4096 but length of envvar is only 1024.
-exploit is present in expoit-2b.py
 
 HTTP Request:
 GET / HTTP/1.0
-<number of characters according to location of buffers> * 'A' + ': a'
+<number of characters according to location of buffers> * 'A'
 
 	sprintf(envvar, "HTTP_%s", buf);
 
 [http.c:280]
 strcat is also a vulnreble function. 
 pn is 1024 bytes while name can go beyond the limit while called from zookfs
-exploit is present in expoit-2a.py
 
 HTTP Request:
 "GET" /<number of characters according to location of buffers>*'A' HTTP/1.0
@@ -59,7 +55,7 @@ because there is no length check in the url_decode(http.c:462) last else conditi
 
 HTTP Request:
 GET / HTTP/1.0
-"Host: localhost"+"A" * <number of characters according to location of buffers> times 
+"Host: localhost"+"A"*<number of characters according to location of buffers> times 
 	
 	url_decode(value, sp);
 
@@ -68,9 +64,3 @@ Canaries are used to check whether return address is corrupted or not.
 Canaries do not provide any security for other stack variable corruption.
 Even in the case of return address corruption Canaries are not full proof, it only increases difficulty in doing so.
 So Canaries will not help in preventing these vulnreblity.
-
-[http.c:310]
-sprintf does not check sanitization of input. 
-by making environment variable PATH_INFO and pn bigger we can overflow buf
-
-	sprintf(buf, "%s%s", pn, getenv("PATH_INFO"));
