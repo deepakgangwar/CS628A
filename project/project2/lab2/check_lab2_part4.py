@@ -423,10 +423,16 @@ def main():
         check_granter()
 
         #Exercise 10
-        #if check_sandbox():
+        if check_sandbox():
+            log("manual","chapa")
         check_fs()
         #Exercise 11
         check_profileapi_uid()
+        #Challenge 2
+        check_myprofile()
+        #Challenge 3
+        if check_profile_service():
+            log(green("PASS"), "Challenge: profile column not in person db")
 
 
 

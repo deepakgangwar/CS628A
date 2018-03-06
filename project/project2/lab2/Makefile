@@ -40,4 +40,19 @@ prepare-submit: lab2-handin.tar.gz
 .PHONY: prepare-submit-a
 prepare-submit-a: lab2a-handin.tar.gz
 
+.PHONY: prepare-submit-b
+prepare-submit-b: lab2b-handin.tar.gz
+
+.PHONY: submit-a
+submit-a: lab2a-handin.tar.gz
+	./submit.py $<
+
+.PHONY: submit-b
+submit-b: lab2b-handin.tar.gz
+	./submit.py $<
+
+.PHONY: submit
+submit: lab2-handin.tar.gz
+	./submit.py $<
+
 .PRECIOUS: lab2-handin.tar.gz

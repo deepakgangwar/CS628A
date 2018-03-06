@@ -7,8 +7,10 @@ import sandboxlib
 import urllib
 import hashlib
 import socket
-import bank
+import bank_client
+import auth_client
 import zoodb
+import md5
 
 from debug import *
 
@@ -20,6 +22,11 @@ class ProfileAPIServer(rpclib.RpcServer):
     def __init__(self, user, visitor):
         self.user = user
         self.visitor = visitor
+        db = zoodb.cred_setup()
+        cred = db.query(zoodb.Cred).get(user)
+        self.token = cred.token
+        os.setgid(61011)
+        os.setuid(61018)
 
     def rpc_get_self(self):
         return self.user
@@ -29,11 +36,12 @@ class ProfileAPIServer(rpclib.RpcServer):
 
     def rpc_get_xfers(self, username):
         xfers = []
-        for xfer in bank.get_log(username):
-            xfers.append({ 'sender': xfer.sender,
-                           'recipient': xfer.recipient,
-                           'amount': xfer.amount,
-                           'time': xfer.time,
+        for xfer in bank_client.get_log(username):
+            log(xfer)
+            xfers.append({ 'sender': xfer['sender'],
+                           'recipient': xfer['recipient'],
+                           'amount': xfer['amount'],
+                           'time': xfer['time'],
                          })
         return xfers
 
@@ -44,11 +52,11 @@ class ProfileAPIServer(rpclib.RpcServer):
             return None
         return { 'username': p.username,
                  'profile': p.profile,
-                 'zoobars': bank.balance(username),
+                 'zoobars': bank_client.balance(username),
                }
 
     def rpc_xfer(self, target, zoobars):
-        bank.transfer(self.user, target, zoobars)
+        bank_client.transfer(self.user, target, zoobars, self.token)
 
 def run_profile(pcode, profile_api_client):
     globals = {'api': profile_api_client}
@@ -56,9 +64,17 @@ def run_profile(pcode, profile_api_client):
 
 class ProfileServer(rpclib.RpcServer):
     def rpc_run(self, pcode, user, visitor):
-        uid = 0
+        #uncomment the 2 commented lines and also line no.63 in chroot-setup to enable additional security such that if a profile breaks jail then also it's not able to access other's files
+        q = 12356
+        #q = int(''.join(str(ord(c)) for c in user)) % 2147360190 + 12355
+        uid = q
+        m = md5.new(user).hexdigest()
 
-        userdir = '/tmp'
+        userdir = '/tmp'+'/' + m
+        #userdir = '/tmp'+'/' + str(q)
+        if not os.path.isdir(userdir):
+            os.mkdir(userdir, 0770)
+            os.chown(userdir,q,q)
 
         (sa, sb) = socket.socketpair(socket.AF_UNIX, socket.SOCK_STREAM, 0)
         pid = os.fork()

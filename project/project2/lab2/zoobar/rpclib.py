@@ -55,7 +55,7 @@ class RpcServer(object):
 
         # Allow anyone to connect.
         # For access control, use directory permissions.
-        os.chmod(sockpath, 0777)
+        os.chmod(sockpath, 0770)
 
         server.listen(5)
         while True:
@@ -79,7 +79,7 @@ class RpcClient(object):
     def call(self, method, **kwargs):
         self.sock.sendall(format_req(method, kwargs) + '\n')
         return parse_resp(self.lines.next())
-
+   
     def close(self):
         self.sock.close()
 

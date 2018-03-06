@@ -34,4 +34,3 @@ print 'Thanks for visiting.  I gave you one zoobar.'
 
 with open(last_fn, 'w') as f:
   f.write(str(now))
-
