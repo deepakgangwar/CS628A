@@ -1,5 +1,5 @@
-make file password with r permission to all
-give rwx permission of folder to all
-include current direcotru in $PATH variable
-remap du to cat flag.txt
-run code and enter any file name then password 2031421864
+1. make file password with r permission to all
+2. give rwx permission of folder to all
+3. include current direcotry in $PATH variable
+4. remap du to cat flag.txt
+5. run code and enter any file name then password 2031421864 (got from objdump)

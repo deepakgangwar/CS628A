@@ -1,0 +1,5 @@
+1. set permissions of the folder to 777 so that user may traverse to this folder
+2. canary is enabled so we need to get the canary this can be done using Format String Vulnerability print the canary present on stack (%39$p) (in Enter Your Name)
+3. Now make payload with shell and nop slides and canary at the required locations (in Enter your Feed)
+4. This will give you shell so cat flag.txt will print the flag
+5. exploit script using pwntools is present in folder

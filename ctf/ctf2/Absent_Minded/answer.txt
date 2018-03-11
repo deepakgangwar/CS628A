@@ -1,0 +1,2 @@
+1. Code checks env variable "dgangwar" (my user name) and "HACK" and executes value of HACK
+2. So set dgangwar to anything and HACK to "cat flag.txt" in bash shell (e.g using export HACK="cat flag.txt") and execute the program which will print the flag

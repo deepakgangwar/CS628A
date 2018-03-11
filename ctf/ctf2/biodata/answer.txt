@@ -1,0 +1,5 @@
+1. try to buffer overflow at Enter Name. NX is enabled so do it via libc attack
+2. set some env variable to "cat flag.txt" and see the address of it as well as system via gdb
+3. make payload according to buffer length so that it returns to system syscall with argument "cat flag.txt" (previously set in env var)
+4. Now execute the program and feed this payload you will get the flag
+5. script is present in folder

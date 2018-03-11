@@ -1,0 +1,4 @@
+1. line *ptr = var can be used.
+2. write argument such that address of read_flag is at ebp-0x8 (var) and address of exit is at ebp-0x4 (ptr)
+3. this will write the address of read_flag in got entry of exit so executing the program will give flag
+4. exploit.py script is present in folder

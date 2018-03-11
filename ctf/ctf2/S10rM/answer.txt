@@ -1,0 +1,4 @@
+1. vuln function prints buffer so Format String Vulnerability can be used
+2. check the offset by sending multiple %x (8 in my case after 3 characters)
+3. Now make payload "BBB"+<address of exit>+"%8$<decimal of address of hello>x"+"%8$n" and pass it to executable which will replace got entry of exit with hello and print the flag
+4. Previous payload will print millions of spaces so will take some time this can be easily resuced by writing it in 2 parts which is present in exploit.py
