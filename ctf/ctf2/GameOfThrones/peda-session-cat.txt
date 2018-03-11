@@ -1,0 +1,3 @@
+break *wildlings
+disable $bpnum
+

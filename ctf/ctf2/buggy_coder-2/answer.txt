@@ -1,0 +1,5 @@
+make file password with r permission to all
+give rwx permission of folder to all
+include current direcotru in $PATH variable
+remap ls to cat flag.txt
+run code and enter any number of bytes then password 1969423851
