@@ -40,7 +40,7 @@ function main(studentDir) {
         console.log("Loading attacker page. If you get a timeout here you're not redirecting to " + target + ".");
         page.open(answerPath);
         page.onLoadFinished = function(status) {
-//            console.log(page.url);
+           console.log(page.url);
             if (page.url == target) {
                 console.log("Visited final site.");
                 page.onLoadFinished = null;
