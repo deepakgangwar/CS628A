@@ -1,0 +1,23 @@
+#!/usr/bin/python
+
+from hashlib import md5
+import sys
+
+def power(h, m):
+    return md5(h.encode('utf-8') + m.encode('utf-8')).hexdigest()[:4]
+
+
+def val(hl, m, hr):
+    return power(hl, m), power(hr, m)
+
+
+def AHash(hl, hr, M):
+    message = list(map(''.join, zip(*[iter(M)] * 4)))
+    print(message)
+    for m in message:
+        hl, hr = val(hl, m, hr)
+        print (hl)
+        print (hr)
+    return hl + hr
+
+print(AHash(sys.argv[1],sys.argv[2],sys.argv[3]))

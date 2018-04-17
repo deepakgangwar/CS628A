@@ -1,0 +1,4 @@
+1. we know the user name and format of password so inculded script finds the password (201706) by brute force
+2. in cookie the seesion id is md5 hash which decrypts to rawgangd which is my username: dgangwar in reverse
+3. so in the cookie chage session id to md5(nimda) i.e. reverse of admin aand change user to admin then reload
+4. after entering the password 'alphonso' it gives a page in which there is a code in white spaces execute it it will give the flag

@@ -1,0 +1,3 @@
+1. the search query is vunerable to sql injection
+2. we know the flag format so make a sql query with LIKE and find the next char
+3. exploit script is present in the folder

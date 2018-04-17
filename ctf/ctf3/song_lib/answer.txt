@@ -1,0 +1,4 @@
+1. server executes  cursor.execute(query) so we can try sql injection
+2. '; SELECT id,  'a73fcf339640929207281fb8e038884806e2eb0840f2245694dbba1d5cc89e65', 'a' FROM users WHERE username='dgangwar
+3. inserting uppper statement as user and password 1 (hash of '1'+'a' is present in upper query) gives error that can't execute 2 statements so replace ; with UNION and it gives a hex qr 
+4. decode it using this tutorial https://blog.idempotent.ca/2012/09/19/stripe-capture-the-flag-2.0---problem-3/

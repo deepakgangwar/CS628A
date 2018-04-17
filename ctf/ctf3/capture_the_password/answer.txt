@@ -1,0 +1,1 @@
+1. flag is present in dump file so simply strings <dump_file> | grep cs628 will give the flag

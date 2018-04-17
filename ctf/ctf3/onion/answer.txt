@@ -1,0 +1,2 @@
+1. open image in stegsolve and see the only LSB channel
+2. the flag is written in the channel
