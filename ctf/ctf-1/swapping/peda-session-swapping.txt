@@ -1,0 +1,11 @@
+break *main
+break *0x8048681
+break *0x804868c
+break *0x8048963
+break *0x8048693
+break *0x8048696
+break *0x80486a3
+break *0x80485de
+break *0x8048604
+break *0x8048615
+
